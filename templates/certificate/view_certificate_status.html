@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+	{% for event in events %}
+	<div class="col-md mb-2">
+		<div class="card" style="width: 18rem;">
+		  <div class="card-body">
+		    <h5 class="card-title">{{event.event_name}}</h5>
+		    <h6 class="card-subtitle mb-2 text-muted">{{event.event_type}}</h6>
+		    <p class="card-text">{{event.starting_date}}</p>
+		    <a href="{% url 'track' event.id event.slug %}" class="card-link btn btn-sm btn-primary">View Status</a>
+		    <a href="{% url 'delete_event' event.id event.slug %}" class="card-link btn btn-sm btn-danger float-right">Delete</a>
+		    <!-- <a href="#" class="card-link">Another link</a> -->
+		  </div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+{% endblock body %}

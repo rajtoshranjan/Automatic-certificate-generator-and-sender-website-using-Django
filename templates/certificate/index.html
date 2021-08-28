@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h2>
+			<i class="fa fa-certificate "></i> Issue Certificate
+		</h2>
+		<br/>
+<form enctype="multipart/form-data" method="post">{% csrf_token %}
+
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-4">
+
+
+				<div class="form-group">
+					<label for="csvinput">Event Name</label>
+					<input type="text" class="form-control" id=""  required name="event_name">
+				</div>
+
+	</div>
+	<div class="col-md-2">
+		<div class="form-group">
+					<label for="templatefile">Event Type</label>
+					<select class="form-control" id=" " name="event_type" required>
+					    <option selected>Choose...</option>
+					    <option value="Webinar">Webinar</option>
+					    <option value="Workshop">Workshop</option>
+					    <option value="Expert Talk">Expert Talk</option>
+					    <option value="Live Project">Live Project</option>
+					    <option value="Quiz">Quiz</option>
+					  </select>
+				</div>
+	</div>
+	<div class="col-md-4">
+		<div class="form-group">
+					<label for="templatefile">Upload Template</label>
+					<input type="file" class="form-control" id="templatefile"  required name="template">
+				</div>
+	</div>
+	<div class="col-md-1"></div>
+
+</div>
+<br/>
+<div class="row">
+	<div class="col-md-1"></div>
+
+	<div class="col-md-3">
+		<div class="form-group">
+					<label for="csvinput">Starting Date</label>
+					<input type="date" class="form-control" id=""  required name="s-date">
+				</div>
+				<br/>
+	</div>
+
+	<div class="col-md-3">
+		<div class="form-group">
+					<label for="csvinput">Ending Date</label>
+					<input type="date" class="form-control" id=""  required name="e-date">
+				</div>
+				<br/>
+	</div>
+	<div class="col-md-4">
+
+
+				<div class="form-group">
+					<label for="csvinput">Upload CSV</label>
+					<input type="file" class="form-control" id="csvinput"  required name="csv">
+				</div>
+
+	</div>
+
+
+	<div class="col-md-1"></div>
+
+</div>
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md">
+
+		<button type='submit' class="btn btn-primary w-100">Next</button>
+	</div>
+	<div class="col-md-1"></div>
+	</div>
+<br/>
+
+</form>
+
+<div class="row">
+	<div class="col-md-1">
+
+	</div>
+	<div class="col-md-10">
+		<div class="alert alert-success" role="alert">
+		  Note :-
+		 <ol>
+	<li>Template file should be in .ppt or .pptx format.</li>
+	<li>In template at the place of <b>Name</b>, please write <b>{{ "{{Full Name}" }}}</b></li>
+	<li>In template at the place of <b>Organization</b>, please write <b>{{"{{organization}"}}}</b></li>
+	<li>In template at the place of <b>Event Type</b>, please write <b>{{"{{Event Type}"}}}</b></li>
+	<li>In template at the place of <b>Topic</b>, please write <b>{{"{{topic}"}}}</b></li>
+	<li>In template at the place of <b>Date</b>, please write <b>{{"{{Date}"}}}</b></li>
+	</ol>
+</div>
+	</div>
+	<div class="col-md-1"></div>
+</div>
+{% endblock body %}

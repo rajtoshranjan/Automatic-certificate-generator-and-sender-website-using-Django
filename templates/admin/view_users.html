@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+	<h3>All Users of this site</h3>
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col">Username</th>
+	      <th scope="col">Full Name</th>
+	      <th scope="col">User Type</th>
+	      <th scope="col">Edit</th>
+	      <th scope="col">Delete</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	{% for user in users %}
+	    <tr>
+	      <th scope="row">{{user.username}}</th>
+	      <td>{{user.get_full_name}}</td>
+	      <td>
+	      	{% if user.is_superuser %}
+	      		Admin
+	      	{% else %}
+	      		Normal
+	      	{% endif %}
+	      </td>
+	      <td><a href="{% url 'edit_user' user.username %}" class="btn m-0 p-0"><i class="fa fa-edit"></i></a></td>
+	      <td>
+	      	<form method="post">{% csrf_token %}
+	      		<input type="text" name="username" style="display:none;" value="{{user.username}}" readonly>
+	      		<button class="btn m-0 p-0"><i class="fa fa-trash"></i></button>
+	      	</form>
+	      </td>
+	    </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>	
+{% endblock body %}

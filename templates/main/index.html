@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<style type="text/css">
+
+.wrapper {
+  width: auto;
+  height: 450px;
+  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://www.ismp.ac.in/images/slider/home1/slide1.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  backdrop-filter: opacity(80%);
+}
+.Container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.15rem;
+  color: black;
+  background-color: #d93415;
+  padding: 20px 30px;
+  margin: 50px 5px 0;
+  border: none;
+  cursor: pointer;
+}
+
+#explanation {
+  padding-left: 20%;
+  padding-right: 20%;
+  text-align: center;
+}
+#explanation p {
+  padding-left: 20%;
+  padding-right: 20%;
+  font-size: 20px;
+}
+
+.cadre{
+    background-color: rgba(175, 181, 183, 0.8);
+}
+#flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#flex > div {
+  margin: 10px;
+}
+
+/* button styles */
+#addFirstParam {
+  display: flex;
+  justify-content: center;
+  border: 2px solid black;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  border-color: black;
+  min-width: 150px;
+  background-color: black;
+}
+a{
+  color: white;
+  text-decoration: none;
+}
+#addSecondParam {
+  display: flex;
+  justify-content: center;
+  min-width: 150px;
+  border: 2px solid black;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  border-color: #d93415;
+  color: white;
+  background-color: #d93415;
+}
+
+/* popup screen overlay - display none by default */
+#popup-wrapper {
+  background-color: rgba(0, 0, 0, 0.65);
+  position: fixed;
+  display: none;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+#close-popup:after {
+ content: 'x';
+ font-weight: 300;
+ font-family: Arial, sans-serif;
+}
+#close-popup {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+/* popup model styles */
+#popup {
+  position: absolute;
+  background-color: #fff;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 600px;
+  cursor: pointer;
+}
+#text {
+  text-align: center;
+  padding-top: 3%;
+  padding-bottom: 5%;
+  padding-right: 1%;
+  padding-left: 1%;
+}
+
+/* mobile styles */
+@media only screen and (max-width: 1000px) {
+  #explanation, #explanation p {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 16px;
+  }
+  #explanation h1 {
+    font-size: 20px;
+  }
+
+}
+
+</style>
+
+<div class="wrapper">
+  <div class="Container">
+    <div class="cadre">
+    <div id="explanation">
+      <div id="heading">
+         <h1>Welcome {{request.user.get_full_name}}</h1>
+      </div>
+
+        <!-- <p>This is certificate generator website of International School of Management Patna.</p> -->
+    </div>
+    <!-- <div id="flex">
+      <div id="addFirstParam">
+          <a href="{% url 'certificate-home' %}">Issue Certificates</a>
+      </div>
+    <!-- <a id="addSecondParam" href="{% url 'view_certificate_status' %}">View Events</a> -->
+  </div>
+  <div id="popup-wrapper">
+    <div id="popup">
+      <div id="close-popup"></div>
+    </div>
+    </div>
+  </div>
+ </div>
+ </div>
+
+{% endblock body %}

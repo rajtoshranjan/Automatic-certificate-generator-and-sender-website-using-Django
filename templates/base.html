@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    {% if title %}
+      {{title}} | ISM Patna
+    {% else %}
+      ISM Patna
+    {% endif %}
+  </title>
+  <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+  <script type="text/javascript" src="{% static 'jquery-3.6.0.min.js' %}"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+  {% block head %}
+
+  {% endblock head %}
+</head>
+<body>
+  <!-- Vertical navbar -->
+<div class="vertical-nav bg-dark" id="sidebar">
+  <div class="pt-2 pb-0 px-3 mb-1 bg-dark">
+    <div class="media d-flex align-items-center"><img src="{% static 'main/img/logo.webp' %}" alt="CodinGunda" width="75" class="mr-3 ">
+      {% if request.user.is_authenticated %}
+      <div class="media-body m-2 mt-0 mb-0 mr-0">
+        <h4 class="m-0">{{request.user.first_name}}</h4>
+        <p class="font-weight-light text-muted m-0"><a href="/logout" class="text-decoration-none text-info"><i class="fa fa-sign-out"></i> Logout</a></p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <hr class="mt-0" />
+
+  <p class="text-gray font-weight-bold text-uppercase px-2 small pb-1 mb-0">Main</p>
+
+  <ul class="nav flex-column bg-dark mb-0">
+    <li class="nav-item">
+      <a href="{% url 'home' %}" class="nav-link text-dark font-italic bg-secondary">
+                <i class="fa fa-home mr-3 text-info fa-fw"></i>
+                Home
+            </a>
+    </li>
+    
+    <li class="nav-item">
+      <a href="{% url 'view_certificate_status' %}" class="nav-link text-light font-italic">
+                <i class="fa fa-calendar mr-3 text-info fa-fw"></i>
+                 View Event
+            </a>
+    </li>
+
+
+    <li class="nav-item">
+      <a href="{% url 'certificate-home' %}" class="nav-link text-light font-italic">
+                <i class="fa fa-certificate mr-3 text-info fa-fw"></i>
+                Issue Certificate
+            </a>
+    </li>
+    
+     {% if request.user.is_authenticated %}
+    <li class="nav-item">
+      <a href="{% url 'change_password' %}" class="nav-link text-light font-italic">
+                <i class="fa fa-key mr-3 text-info fa-fw"></i>
+                Change Password
+            </a>
+    </li>
+    {% endif %}
+    
+    {% if not request.user.is_authenticated %}
+    <li class="nav-item">
+      <a href="{% url 'login' %}" class="nav-link text-light font-italic">
+                <i class="fa fa-sign-in mr-3 text-info fa-fw"></i>
+                Login
+            </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="{% url 'password_reset' %}" class="nav-link text-light font-italic">
+                <i class="fa fa-key mr-3 text-info fa-fw"></i>
+                Reset Password
+            </a>
+    </li>
+
+   
+
+    {% endif %}
+    
+    {% if request.user.is_superuser %}
+
+    <li class="nav-item">
+      <a href="{% url 'view_users' %}" class="nav-link text-light font-italic">
+                <i class="fa fa-eye mr-3 text-info fa-fw"></i>
+                View Users
+            </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="{% url 'create_user' %}" class="nav-link text-light font-italic">
+                <i class="fa fa-picture-o mr-3 text-info fa-fw"></i>
+                Create User
+            </a>
+    </li>
+    {% endif %}
+  </ul>
+
+  
+</div>
+<!-- End vertical navbar -->
+
+
+<!-- Page content holder -->
+<div class="page-content p-5" id="content">
+  <!-- Menu button -->
+  <button id="sidebarCollapse" type="button" class="btn btn-light bg-dark text-light rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars"></i><small class="text-uppercase font-weight-bold"> Menu</small></button>
+
+  <main>
+    {% if messages %}
+      
+          {% for message in messages %}
+          <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+          {% endfor %}
+      
+    {% endif %}
+
+    {% block  body %}
+    {% endblock body %}
+  </main>
+
+</div>
+
+<!-- <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script> -->
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'main/js/main.js' %}"></script>
+
+</body>
+</html>

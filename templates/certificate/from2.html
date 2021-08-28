@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h2>
+			<i class="fa fa-certificate "></i> Issue Certificate
+		</h2>
+		<br/>
+<form method="post">{% csrf_token %}
+	<div id="after_upload">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for="">Select Column for Name</label>
+					<select class="form-control" id=" " name="name_col" required>
+
+					    <option selected>Choose...</option>
+					    {% for column in columns %}
+					    <option value="{{column}}">{{column}}</option>
+					    {% endfor %}
+					  </select>
+
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for="">Select Column for Email</label>
+					<select class="form-control" id=" " name="email_col" required>
+
+					    <option selected>Choose...</option>
+					    {% for column in columns %}
+					    <option value="{{column}}">{{column}}</option>
+					    {% endfor %}
+					  </select>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="">Select Column for Organization</label>
+					<select class="form-control" id=" " name="org_col" required>
+
+					    <option selected>Choose...</option>
+					    {% for column in columns %}
+					    <option value="{{column}}">{{column}}</option>
+					    {% endfor %}
+					  </select>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="">Select Column for Designation</label>
+					<select class="form-control" id=" " name="desi_col" required>
+
+					    <option selected>Choose...</option>
+					    {% for column in columns %}
+					    <option value="{{column}}">{{column}}</option>
+					    {% endfor %}
+					  </select>
+
+				</div>
+			</div>
+		<!--<div class="col-md-3">
+				<div class="form-group">
+					<label for="">Select Column for Rank</label>
+					<select class="form-control" id=" " name="rank_col" required>
+
+					    <option selected>Choose...</option>
+					    {% for column in columns %}
+					    <option value="{{column}}">{{column}}</option>
+					    {% endfor %}
+					  </select>
+
+				</div>
+			</div> -->
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="">Enter Prefix for S.no.</label>
+					<input class="form-control" id=" " name="sno_col" required></input>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="form-group">
+				    <label for="exampleFormControlTextarea1">Message of Email</label>
+				    <textarea class="form-control" name="mess" rows="3"></textarea>
+				  </div>
+				  <br/>
+				<button type="submit" class="btn btn-info w-100" onclick="this.innerText='Generating and Sending Certificates....'">Generate and Send Certificates</button>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<div class="alert alert-success" role="alert">
+			  Generating and Sending process of certificate usually take some time, Please have some patience and <b>do not refresh the page</b>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+</form>
+{% endblock body %}
